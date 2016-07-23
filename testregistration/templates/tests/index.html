@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Tests</h1>
+    <dl>
+        {% for test in tests %}
+        <dt>{{ test.name }}</dt>
+        <dd>Time Slots</dd>
+        {% endfor %}
+    </dl>
+{% endblock %}
