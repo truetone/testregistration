@@ -12,8 +12,8 @@ class Test(SurrogatePK, Model):
     # TODO obtain and save user info from authentication
 
     # TODO figure out how to properly define this relationship
-    # times = relationship('TimeSlot',
-    #                      backref=db.backref('test', lazy='dynamic'))
+    # time_slots = relationship('TimeSlot',
+    #                           backref=db.backref('test', lazy='dynamic'))
 
     def __init__(self, name, **kwargs):
         """Create instance."""

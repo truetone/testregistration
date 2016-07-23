@@ -10,6 +10,7 @@ class TimeSlot(SurrogatePK, Model):
 
     start_time = Column(db.DateTime, nullable=False)
     end_time = Column(db.DateTime, nullable=False)
+    available = Column(db.Boolean, default=False)
     test_id = Column(db.Integer, db.ForeignKey('test.id'))
     test = relationship('Test',
                         backref=db.backref('time_slot', lazy='dynamic'))

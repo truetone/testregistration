@@ -3,8 +3,15 @@
     <h1>Tests</h1>
     <dl>
         {% for test in tests %}
-        <dt>{{ test.name }}</dt>
-        <dd>Time Slots</dd>
+        <dt>{{ test["name"] }}</dt>
+        <dd>
+            <ul>
+                {% for ts in test["time_slots"] %}
+                {# TODO format these date/times #}
+                <li>Start: {{ ts["start_time"] }}; End: {{ ts["end_time"] }}</li>
+                {% endfor %}
+            </ul>
+        </dd>
         {% endfor %}
     </dl>
 {% endblock %}
