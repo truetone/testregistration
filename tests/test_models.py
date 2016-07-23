@@ -5,6 +5,8 @@ import datetime as dt
 import pytest
 
 from testregistration.user.models import Role, User
+from testregistration.test.models import Test
+from testregistration.time_slot.models import TimeSlot
 
 from .factories import UserFactory
 
@@ -65,3 +67,33 @@ class TestUser:
         user.roles.append(role)
         user.save()
         assert role in user.roles
+
+
+@pytest.mark.usefixtures('db')
+class TestTest:
+    def test_create(self):
+        test = Test.create(
+            name='Test Test'
+        )
+        assert test is not None
+        assert test.name == 'Test Test'
+
+        retrieved = Test.get_by_id(test.id)
+        assert retrieved == test
+
+
+@pytest.mark.usefixtures('db')
+class TestTimeSlot:
+    def test_create(self):
+        test = Test.create(
+            name='Test Test'
+        )
+        time_slot = TimeSlot.create(
+            start_time=dt.datetime.now(),
+            end_time=dt.datetime.now() + dt.timedelta(hours=1),
+            test_id=test.id,
+        )
+        assert time_slot is not None
+        retrieved = TimeSlot.get_by_id(time_slot.id)
+        assert retrieved == time_slot
+        assert retrieved.test_id == test.id
